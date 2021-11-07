@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="articles">
+    <div class="cars d-flex mx-auto justify-content-between flex-wrap" style="width: 100%">
+        <div class="card" style="width: 100%; margin:1em auto">
+            <div class="card-body">
+                <h2>{{ voiture.modele | raw}}</h2>
+            </div>
+            <div class="content">
+                <img class="card-img-top" src="{{ voiture.photo }}" alt="Card image cap">
+                <div class="card-body">
+                <h4>Characteristics :</h4>
+                <p class="card-text">{{ voiture.caracteristiques | raw }}<br>
+                    state of the vehicle : {{ voiture.etatLocation | raw }}<br>
+                    total available cars of the same model : {{ voiture.nbVoitures | raw }}<br>
+                    rent per day : {{ voiture.price | raw }}€/day
+                </p>
+                    {% if app.user %}
+                        {% if app.user.role == 'renter' %}
+                            {% if app.user.id ==  voiture.idLoueur.id %}
+                                 <a href="{{ path('carEdit', {'id': voiture.id }) }}" class="btn btn-dark"> EDIT </a>
+                                <a href="{{ path('deleteCar', {'id': voiture.id }) }}" class="btn btn-dark"> DELETE </a>
+                            {% endif %}
+                        {% else %}
+                          <a href="{{ path('carEdit', {'id': voiture.id }) }}" class="btn btn-dark"> RENT </a>
+                        {% endif %}
+                    {% endif %}
+            </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
