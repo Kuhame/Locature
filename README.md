@@ -31,8 +31,3 @@ et tester les fonctionnalités qui lui sont propre :
 * PHP : 7.3.21
 * MySQL : 5.7.31
 
-## Membre de l'équipe
-
-* BUVAL Anthony
-* HAN Laurent
-* SIVANAND Nirussan
